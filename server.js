@@ -1,4 +1,5 @@
 const express = require('express');
+const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const request = require('request');
 require('dotenv').config();
@@ -35,6 +36,7 @@ app.post('/', function (req, res) {
     }
   });
 })
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
