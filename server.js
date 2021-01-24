@@ -38,6 +38,6 @@ app.post('/', function (req, res) {
 })
 
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
   console.log('Example app listening on port 3000!')
 })
