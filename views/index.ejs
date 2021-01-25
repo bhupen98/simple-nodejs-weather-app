@@ -8,6 +8,7 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+
     <div class="container">
       <fieldset>
         <form action="/" method="post">
@@ -16,14 +17,78 @@
         </form>
         <% if(weather !== null){ %>
         <div class="weather-view-container">
+          <h1>
+            <%= weather.fiveDays.city.name %>,<%= weather.fiveDays.city.country %>
+          </h1>
           <div class="temp">
             <div class="desc">
-            <img src="http://openweathermap.org/img/wn/<%= weather.weather[0].icon
-                      %>.png "alt="">
-                      <h3><%= weather.weather[0].description %></h3>
+              <img src="http://openweathermap.org/img/wn/<%= weather.current.weather[0].icon
+                        %>.png "alt="">
+                        <h3><%= weather.current.weather[0].description %></h3>
             </div>
-                      <h1><%= weather.main.temp %>
-                        <span>&#8457;</span></h1>
+            <h1><%= weather.current.main.temp %>
+              <span>&#8457;</span></h1>
+          </div>
+
+          <!-- five days forecast section -->
+          <h1>Five Days Weather forecast</h1>
+          <div class="five-days-forecast-container">
+            <table>
+              <tr>
+                <th>Icon</th>
+                <th>Date</th>
+                <th>Temperature</th>
+                <th>Description</th>
+              </tr>
+
+              <% for (let [index, data] of weather.fiveDays.list.entries() ||
+              []){%>
+
+              <!-- color seperation -->
+              
+              <tr class="<%= 
+                          new
+                          Date(weather.fiveDays.list[index].dt*1000).getDay()==0?'sun'
+                          :
+                          new Date(weather.fiveDays.list[index].dt*1000).getDay()==1?'mon'
+                          :
+                          new Date(weather.fiveDays.list[index].dt*1000).getDay()==2?'tue'
+                          :
+                          new Date(weather.fiveDays.list[index].dt*1000).getDay()==3?'wed'
+                          :
+                          new Date(weather.fiveDays.list[index].dt*1000).getDay()==4?'thu'
+                          :
+                          new Date(weather.fiveDays.list[index].dt*1000).getDay()==5?'fri'
+                          :
+                          'sat'
+                          %>" >
+                <td>
+              <img src="http://openweathermap.org/img/wn/<%=
+                        weather.fiveDays.list[index].weather[0].icon
+                        %>.png "alt="">
+                </td>
+                <td>
+                  <small>
+                    <%=new Date(weather.fiveDays.list[index].dt*1000
+                   ).toLocaleString('en-US', { hour12:true}) 
+                   %>,
+                   <b>
+                     <%= new Date(weather.fiveDays.list[index].dt*1000
+                   ).toLocaleString('en-US',{weekday:'long'})
+                   %>
+                   </b>
+                  </small>
+
+                </td>
+                <td><%= weather.fiveDays.list[index].main.temp %>
+                  <span>&#8457;</span>
+                </td>
+                <td>
+                  <%= weather.fiveDays.list[index].weather[0].description %>
+                </td>
+              </tr>
+              <%} %>
+            </table>
           </div>
         </div>
         <% } %>

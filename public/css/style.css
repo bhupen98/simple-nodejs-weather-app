@@ -3,6 +3,18 @@
   https://codepen.io/official_naveen/pen/rgknI
 */
 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table{
+  width:100%;
+}
+th{
+  text-align:left;
+}
+
 body {
   margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
@@ -80,7 +92,7 @@ hr{
 /* weather view section */
 .weather-view-container{
   height:50em;
-  margin-top:5em;
+  margin-top:2em;
 }
 
 .temp{
@@ -107,4 +119,33 @@ hr{
   margin-left:1em;
 }
 
+/*five days weather forecast */
+.sun{
+  background:red;
+}
+.mon{
+  background:yellow;
+}
+
+.tue{
+  background:pink;
+}
+
+.wed{
+  background:green;
+}
+
+.thu{
+  background:orange
+}
+.fri{
+  background:lightblue
+}
+.sat{
+  background:purple;
+  color:white
+}
+.five-days-forecast-container{
+  width:100%;
+}
 
